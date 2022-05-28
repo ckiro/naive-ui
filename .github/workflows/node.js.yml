@@ -37,6 +37,12 @@ jobs:
 
       - name: Build
         run: pnpm run build:package
+        
+      - name: Show Files
+        run: ls -R
+        
+      - name: Show pwd
+        run: pwd
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3.1.0
