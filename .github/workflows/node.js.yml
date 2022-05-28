@@ -43,12 +43,15 @@ jobs:
         
       - name: Show pwd
         run: pwd
-
+      
+      - name: Tar files
+        run: tar -cvf naive_ui.tar /home/runner/work/naive-ui/naive-ui
+    
       - name: Upload Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
           name: dist
-          path: tar -cvf my_files.tar /home/runner/work/naive-ui/naive-ui
+          path: naive_ui.tar
         
   download:
     needs: build
@@ -59,7 +62,7 @@ jobs:
         uses: actions/download-artifact@v3.0.0
         with:
           name: dist
-          path: my_files.tar
+          path: naive_ui.tar
         
     
 
