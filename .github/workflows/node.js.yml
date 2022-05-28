@@ -42,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: dist
-          path: tar -cvf my_files.tar es
+          path: tar -cvf my_files.tar ./es
         
   download:
     needs: build
