@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [17.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -35,14 +35,18 @@ jobs:
 
       - run: pnpm install
 
-      - name: Lint
-        run: pnpm run lint
+      - name: Build
+        run: pnpm run build:package
 
-      - name: Test
-        run: pnpm run test:cov
-
-      - name: Code coverage
-        uses: codecov/codecov-action@v2.1.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3.1.0
+        
+  download:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.0
+    
 
